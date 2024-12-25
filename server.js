@@ -1,6 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const authRoutes = require('./routes/authRoutes');
+const resourceRoutes = require('./routes/resourceRoutes');
+const eventRoutes = require('./routes/eventRoutes');
+
+
+
 require('dotenv').config();
 
 const app = express();
@@ -15,6 +22,11 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.send('Welcome to the Event Coordination API!')
+
+app.use('/auth', authRoutes);
+app.use('/resources', resourceRoutes);
+app.use('/events', eventRoutes);
+    
 
 });
 
